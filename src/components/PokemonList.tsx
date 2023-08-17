@@ -1,17 +1,16 @@
 import { SelectChangeEvent } from '@mui/material';
 import { FC, MouseEvent, useState } from 'react';
-import { pokemonAPI } from '../services/PokemonAPIService';
+import { INamesList } from '../models/types';
 import Card from './Card';
 import PokemonInfo from './PokemonInfo';
 
 interface PokemonListProps {
-    page: number;
+    pokemonsList: INamesList;
     type: string;
     handleChange: (event: SelectChangeEvent<string> | string) => void;
 }
 
-const PokemonList: FC<PokemonListProps> = ({ page, type, handleChange }) => {
-    const { data: pokemonsList } = pokemonAPI.useGetPokemonsQuery(page);
+const PokemonList: FC<PokemonListProps> = ({ pokemonsList, type, handleChange }) => {
     const [open, setOpen] = useState(false);
     const [name_pokemon, setName] = useState('');
 
